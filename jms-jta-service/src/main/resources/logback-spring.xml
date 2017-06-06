@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/base.xml"/>
+
+<!-- The FILE and ASYNC appenders are here as examples for a production configuration -->
+
+
+    <logger name="com.example" level="DEBUG"/>
+
+    <logger name="com.atomikos" level="WARN"/>
+    <logger name="sun.rmi" level="WARN"/>
+    <logger name="org.apache" level="INFO"/>
+
+
+    <root level="DEBUG">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+
+</configuration>
