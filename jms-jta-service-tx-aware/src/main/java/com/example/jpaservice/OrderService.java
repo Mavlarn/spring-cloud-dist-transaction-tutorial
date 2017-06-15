@@ -1,7 +1,7 @@
-package com.example.jmsjtaservice;
+package com.example.jpaservice;
 
-import com.example.jmsjtaservice.domain.Order;
-import com.example.jmsjtaservice.domain.OrderRepository;
+import com.example.jpaservice.domain.Order;
+import com.example.jpaservice.domain.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,11 +57,6 @@ public class OrderService {
             throw new RuntimeException("Error3");
         }
         processedUIDs.add(orderDTO.getToken());
-    }
-
-    @JmsListener(destination = "order:need_to_pay", containerFactory = "orderFactory")
-    public void toPay(OrderDTO orderDTO) {
-        LOG.debug("Get jms message to pay for order:{}", orderDTO);
     }
 
 }

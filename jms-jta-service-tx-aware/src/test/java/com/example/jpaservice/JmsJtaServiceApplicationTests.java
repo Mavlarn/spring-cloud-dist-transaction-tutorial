@@ -1,4 +1,4 @@
-package com.example.jmsjtaservice;
+package com.example.jpaservice;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

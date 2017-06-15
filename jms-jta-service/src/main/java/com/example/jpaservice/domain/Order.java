@@ -1,23 +1,26 @@
-package com.example.jmsjtaservice;
+package com.example.jpaservice.domain;
 
-import java.io.Serializable;
+import javax.persistence.*;
 
 /**
  * Created by mavlarn on 2017/5/16.
  */
-public class OrderDTO implements Serializable {
+@Entity
+@Table(name = "CustomerOrder")
+public class Order {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
+    @Column
     private String title;
 
+    @Column
     private String ticketIds;
 
+    @Column
     private String status;
-
-    private int error;
-
-    private String token;
 
     public Long getId() {
         return id;
@@ -51,22 +54,6 @@ public class OrderDTO implements Serializable {
         this.status = status;
     }
 
-    public int getError() {
-        return error;
-    }
-
-    public void setError(int error) {
-        this.error = error;
-    }
-
-    public String getToken() {
-        return token;
-    }
-
-    public void setToken(String token) {
-        this.token = token;
-    }
-
     @Override
     public String toString() {
         return "Order{" +
@@ -74,8 +61,6 @@ public class OrderDTO implements Serializable {
                 ", title='" + title + '\'' +
                 ", ticketIds='" + ticketIds + '\'' +
                 ", status='" + status + '\'' +
-                ", error='" + error + '\'' +
-                ", token='" + token + '\'' +
                 '}';
     }
 }

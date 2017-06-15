@@ -4,11 +4,11 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>com.example</groupId>
-	<artifactId>jms-jta-service</artifactId>
+	<artifactId>jms-jta-service-tx-aware</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>jms-jta-service</name>
+	<name>jms-jta-service-tx-aware</name>
 	<description>Demo project for Spring Boot</description>
 
 	<parent>

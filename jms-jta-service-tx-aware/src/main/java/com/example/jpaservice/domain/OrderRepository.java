@@ -1,4 +1,4 @@
-package com.example.jmsjtaservice.domain;
+package com.example.jpaservice.domain;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

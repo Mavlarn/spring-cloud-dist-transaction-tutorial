@@ -1,14 +1,14 @@
-package com.example.jmsjtaservice;
+package com.example.jpaservice;
 
-import com.example.jmsjtaservice.domain.Order;
-import com.example.jmsjtaservice.domain.OrderRepository;
+import com.example.jpaservice.domain.Order;
+import com.example.jpaservice.domain.OrderRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jms.core.JmsTemplate;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 import java.util.UUID;
 
@@ -22,12 +22,16 @@ public class OrderResource {
 
     @Autowired
     private OrderRepository orderRepository;
-
     @Autowired
     private JmsTemplate jmsTemplate;
 
+    @PostConstruct
+    public void init() {
+        jmsTemplate.setReceiveTimeout(5000);
+    }
+
     @PostMapping(value = "/")
-    @Transactional
+//    @Transactional
     public void create(@RequestBody OrderDTO orderDTO) {
         LOG.debug("Create order:{}", orderDTO);
         String uid = UUID.randomUUID().toString();
@@ -51,13 +55,13 @@ public class OrderResource {
     }
 
     @GetMapping(value = "/jms/new")
-    public Order getAllFromMessageNew() {
-        return (Order)jmsTemplate.receiveAndConvert("order:new");
+    public OrderDTO getAllFromMessageNew() {
+        return (OrderDTO)jmsTemplate.receiveAndConvert("order:new");
     }
 
     @GetMapping(value = "/jms/pay")
-    public Order getAllFromMessagePay() {
-        return (Order)jmsTemplate.receiveAndConvert("order:need_to_pay");
+    public OrderDTO getAllFromMessagePay() {
+        return (OrderDTO)jmsTemplate.receiveAndConvert("order:need_to_pay");
     }
 
 }
